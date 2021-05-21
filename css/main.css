@@ -230,7 +230,7 @@ iframe {
 /*==================================================================
 [ login more ]*/
 .login100-more {
-  width: calc(100% - 670px);
+  width: calc(100% - 650px);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
@@ -256,7 +256,7 @@ iframe {
 [ Form ]*/
 
 .login100-form {
-  width: 670px;
+  width: 650px;
   min-height: calc(100vh - 86px);
   /* min-height: 100vh; */
   display: block;
@@ -479,7 +479,7 @@ input.input100 {
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #6675df;
+  background: #f4511e;
 
   font-family: Montserrat-Bold;
   font-size: 12px;
