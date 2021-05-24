@@ -64,7 +64,7 @@
 					<br>
 					<br>
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button id="nextButton" class="login100-form-btn" >
 							Next
 						</button>
 					</div>
@@ -77,21 +77,29 @@
 		</div>
 	</div>
 	<script>
-	var USA=["texas","arizona","new york"];
-            var singapore=["Yishun","jurong","clementi"];
-            var city=document.getElementById('city');
-            var node = document.createElement("OPTION");
-            document.getElementById('location').onchange=()=>{
-            var location=document.getElementById('location').value;
+		var nextButton=document.getElementById('nextButton')
+		nextButton.disabled=true
+		nextButton.style.background='#757373'
+
+		var USA=["texas","arizona","new york"];
+        var singapore=["Yishun","jurong","clementi"];
+        var city=document.getElementById('city');
+		var country=document.getElementById('location')
+        country.onchange=()=>{
+        	var location=document.getElementById('location').value;
             console.log(location)
+			nextButton.disabled=false
+			nextButton.style.background='#d54900'
+			nextButton.onmouseenter=function(){
+				nextButton.style.background='#f9712b'
+			}
             city.innerHTML=''
             if(location=="USA"){
-                USA.forEach((x)=>{
-                
+                USA.forEach((x)=>{    
                 let option=document.createElement('option')
                 option.value=x
                 option.text=x
-				option.classList.add('class="wrap-input50"')
+				// option.classList.add('class="wrap-input50"')
                 city.appendChild(option)
                 })
                 
@@ -106,7 +114,13 @@
                 
             }
                 document.getElementById("hide").style.display='block'
-            }
+        }
+		nextButton.addEventListener('click',function(event){
+			event.preventDefault()
+			console.log(country.value)
+			console.log(city.value)
+			console.log('Clicked!')
+		})
           
         </script>
 
