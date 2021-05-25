@@ -30,32 +30,31 @@
 				</div>
 			<div class="wrap-login100">
 				
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" onsubmit="return setAction(this)">
 					<span class="login100-form-title p-b-43">
 						Select Server Location
 					</span>
 					
-					<select class="wrap-input50" id="location" name="location" >
-						<option value="none" selected disabled hidden>
+					<select class="wrap-input50" id="location" name="location">
+						<option value="" selected disabled hidden>
 							Select Location
 						</option>                           
 						<option  value="USA">USA</option>
 						<option value="Singapore">Singapore</option>
-				
 					</select>
 					<br>
 					<br>
 					<div id="hide1">
 						<select class="wrap-input50" id="server" name="server">
-							<option value="none" selected disabled hidden>
+							<option value="" selected disabled hidden>
 								Select Server
 							</option>                       
 						</select>
 					</div>
 					<br>
 					<div id="hide2">
-						<select class="wrap-input50" id="authentication" name="authentication">
-							<option value="none" selected disabled hidden>
+						<select class="wrap-input50" id="authentication" name="authentication" required oninvalid="this.setCustomValidity('Please select a location')" oninput="this.setCustomValidity('')">
+							<option value="" selected disabled hidden>
 								Select Type
 							</option>
 							<option  value="two-factor">Two Factor Authentication</option>
@@ -65,7 +64,7 @@
 					<br>
 					<br>
 					<div class="container-login100-form-btn">
-						<button id="nextButton" class="login100-form-btn" >
+						<button id="nextButton" class="login100-form-btn" type="submit" >
 							Next
 						</button>
 					</div>
@@ -123,19 +122,34 @@
                 document.getElementById("hide2").style.display='block'
 
         }
-		nextButton.addEventListener('click',function(event){
-			event.preventDefault()
+		// nextButton.addEventListener('click',function(event){
+		// 	event.preventDefault()
+		// 	console.log(country.value)
+		// 	console.log(server.value)
+		// 	console.log(authentication.value)
+		// 	console.log('Clicked!')
+
+		// 	if(country.value!='none' && server.value!='none' && authentication.value!='none'){
+		// 		if(country.value=='USA' && server.value=='Server 1' && authentication.value=='two-factor'){
+		// 			window.open('https://us-login.ad.citrix.acecloudhosting.com/manageotp', '_blank');
+		// 		}
+		// 	}
+		// })
+
+		function setAction(form){
+			// form.preventDefault()
 			console.log(country.value)
 			console.log(server.value)
 			console.log(authentication.value)
 			console.log('Clicked!')
 
-			if(country.value!='none' && server.value!='none' && authentication.value!='none'){
-				if(country.value=='USA' && server.value=='Server 1' && authentication.value=='two-factor'){
-					window.open('https://us-login.ad.citrix.acecloudhosting.com/manageotp', '_blank');
-				}
+			if(country.value=='USA' && server.value=='Server 1' && authentication.value=='two-factor'){
+				window.open('https://us-login.ad.citrix.acecloudhosting.com/manageotp', '_blank');
 			}
-		})
+			
+
+			return false
+		}
           
         </script>
 
