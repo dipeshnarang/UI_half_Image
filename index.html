@@ -10,20 +10,11 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
-
 </head>
-
-
 
 <body style="background-color: #666666;">
 	
@@ -46,7 +37,7 @@
 					
 					<select class="wrap-input50" id="location" name="location" >
 						<option value="none" selected disabled hidden>
-							Select
+							Select Location
 						</option>                           
 						<option  value="USA">USA</option>
 						<option value="Singapore">Singapore</option>
@@ -54,11 +45,21 @@
 					</select>
 					<br>
 					<br>
-					<div id="hide">
-						<select class="wrap-input50" id="city" name="city">
+					<div id="hide1">
+						<select class="wrap-input50" id="server" name="server">
 							<option value="none" selected disabled hidden>
-								Select
+								Select Server
 							</option>                       
+						</select>
+					</div>
+					<br>
+					<div id="hide2">
+						<select class="wrap-input50" id="authentication" name="authentication">
+							<option value="none" selected disabled hidden>
+								Select Type
+							</option>
+							<option  value="two-factor">Two Factor Authentication</option>
+							<option value="login">Login</option>                       
 						</select>
 					</div>
 					<br>
@@ -81,26 +82,31 @@
 		nextButton.disabled=true
 		nextButton.style.background='#757373'
 
-		var USA=["texas","arizona","new york"];
+		var USA=["Server 1","LA"];
         var singapore=["Yishun","jurong","clementi"];
-        var city=document.getElementById('city');
+        var server=document.getElementById('server');
 		var country=document.getElementById('location')
+		var authentication=document.getElementById('authentication')
         country.onchange=()=>{
-        	var location=document.getElementById('location').value;
+        	var location=country.value;
             console.log(location)
 			nextButton.disabled=false
 			nextButton.style.background='#d54900'
 			nextButton.onmouseenter=function(){
 				nextButton.style.background='#f9712b'
 			}
-            city.innerHTML=''
+			nextButton.onmouseleave=function(){
+				nextButton.style.background='#d54900'
+			}
+
+            server.innerHTML=''
             if(location=="USA"){
                 USA.forEach((x)=>{    
                 let option=document.createElement('option')
                 option.value=x
                 option.text=x
 				// option.classList.add('class="wrap-input50"')
-                city.appendChild(option)
+                server.appendChild(option)
                 })
                 
             }
@@ -109,17 +115,26 @@
                     let option=document.createElement('option')
                     option.value=x
                     option.text=x
-                    city.appendChild(option);
+                    server.appendChild(option);
                 })
                 
             }
-                document.getElementById("hide").style.display='block'
+                document.getElementById("hide1").style.display='block'
+                document.getElementById("hide2").style.display='block'
+
         }
 		nextButton.addEventListener('click',function(event){
 			event.preventDefault()
 			console.log(country.value)
-			console.log(city.value)
+			console.log(server.value)
+			console.log(authentication.value)
 			console.log('Clicked!')
+
+			if(country.value!='none' && server.value!='none' && authentication.value!='none'){
+				if(country.value=='USA' && server.value=='Server 1' && authentication.value=='two-factor'){
+					window.open('https://us-login.ad.citrix.acecloudhosting.com/manageotp', '_blank');
+				}
+			}
 		})
           
         </script>

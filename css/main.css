@@ -255,7 +255,7 @@ iframe {
   /* min-height: 100vh; */
   display: block;
   background-color: #f7f7f7;
-  padding: 173px 75px 55px 75px;
+  padding: 100px 75px 55px 75px;
 }
 
 .login100-form-title {
@@ -626,7 +626,10 @@ select {
 label{
     float:left
 }
-#hide{
+#hide1{
   display:none;
 }
 /* html { overflow-y: hidden; } */
+#hide2{
+  display:none;
+}
